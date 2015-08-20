@@ -1,0 +1,7 @@
+.ng-scope {
+    cursor: move ;
+    margin: 10px;
+}
+.thumbnail {
+    height: 280px !important;
+}

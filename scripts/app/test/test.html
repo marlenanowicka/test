@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Dynamic contact form</h2>
+            <div class="col-md-6">
+                <div id="cart">
+                    <h1>Twój formularz</h1>
+                        <div class="thumbnail" data-drop="true" ng-model='dynamicFields' jqyoui-droppable="{multiple:true}">
+                            <div ng-repeat="item in dynamicFields track by $index" ng-show="item.value" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="list4" jqyoui-draggable="{index: {{$index}}}">
+                                <div ng-switch on="item.type">
+                                    <div ng-switch-when="input">
+                                        <label class="control-label">Input: </label>
+                                        <input class="form-control" type="text" ng-value="item.value">
+                                    </div>
+                                    <div ng-switch-when="textarea">
+                                        <div>
+                                            <label class="control-label">Textarea: </label>
+                                        <textarea class="form-control">{{item.value}}</textarea>
+                                        </div>
+                                    </div>
+                                    <div ng-switch-when="button">
+                                        <button class="btn btn-primary">{{item.value}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-hide="hideMe()">Przeciągnij tutaj pole</div>
+                        </div>
+                </div>
+                <div class="jumbotron">
+                    <h4>Aby przekonwertować całą bazę do Json wybierz kliknij w poniższy przycisk</h4>
+                    <button class="btn btn-primary btn-lg" ng-click="wyslij(dynamicFields)" ng-disabled="przyciskDisabled">Konwertuj do JSON: </button><br /><br/>
+                    <textarea rows="5" ng-model="rezultatJSON"></textarea>
+                </div>
+            </div>
+                    <div id="products">
+                        <div id="catalog" class="col-md-6">
+                            <h2>Skomponuj swój formularz</h2>
+                            <form>
+                                <div class="form-group" ng-repeat='item in inputs' ng-show="item.value" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="inputs" jqyoui-draggable="{index: {{$index}}, animate: true, placeholder: 'keep'}">
+                                    <label class="control-label">Input: </label><input class="form-control" type="text" placeholder="{{item.value}}"/>
+                                </div>
+                                <div  class="form-group" ng-repeat='item in buttons' ng-show="item.value" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="buttons" jqyoui-draggable="{index: {{$index}}, placeholder: 'keep'}">
+                                    <button class="btn btn-primary">{{item.value}}</button>
+                                </div>
+                                <div class="form-group" ng-repeat='item in textareas' ng-show="item.value" data-drag="true" data-jqyoui-options="{revert: 'invalid', helper: 'clone'}" ng-model="textareas" jqyoui-draggable="{index: {{$index}}, placeholder: 'keep'}">
+                                    <label class="control-label">Textarea: </label><textarea class="form-control">{{item.value}}</textarea>
+                                </div>
+                            </form>
+                         </div>
+                    </div>
+        </div>
+    </div>
+</div>
